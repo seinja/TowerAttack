@@ -6,11 +6,13 @@ public class BuildManager : MonoBehaviour
     
     public static BuildManager instance;
     private TurrentBlueprint turretToBuild;
+    private Node selectedNode;
 
     public GameObject standartTurretPrefab;
     public GameObject laserTurretPrefab;
     public GameObject misleTurretPrefab;
     public GameObject buildEffect;
+    public NodeUIScript nodeUI;
 
 
     // Используем паттерн Синглтон т.к нужен только один BuildManager
@@ -26,22 +28,33 @@ public class BuildManager : MonoBehaviour
     public bool CanBuild { get { return turretToBuild != null; } }
     public bool HasMoney { get { return PlayerStats.money >= turretToBuild.cost; } }
 
+
+    public void SelectNode(Node node)
+    { 
+
+        if(selectedNode == node) 
+        {
+            DeselectNote();
+            return;
+        }
+
+        selectedNode = node;
+        turretToBuild = null;
+
+        nodeUI.SetTarget(node);
+    }
     public void SelectTurretToBuild(TurrentBlueprint turret) 
     {
         turretToBuild = turret;
+        DeselectNote();
     }
 
-    public void BuildTurret(Node node) 
+    public TurrentBlueprint GetTurettToBuild() { return turretToBuild; }
+
+    public void DeselectNote() 
     {
-        if (PlayerStats.money < turretToBuild.cost) { Debug.Log("Low money"); return; }
-
-        PlayerStats.money -= turretToBuild.cost;
-
-        GameObject turret = (GameObject) Instantiate(turretToBuild.prefab, node.GetNodePosition(),Quaternion.identity);
-        node.turret = turret;
-
-        GameObject effect = (GameObject)Instantiate(buildEffect, node.GetNodePosition(), Quaternion.identity);
-        Destroy(effect, 1f);
+        selectedNode = null;
+        nodeUI.Hide();
     }
 
 }

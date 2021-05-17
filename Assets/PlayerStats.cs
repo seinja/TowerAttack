@@ -7,13 +7,14 @@ public class PlayerStats : MonoBehaviour
     public int startMoney = 150;
     public Text moneyText;
     public Text liveText;
-
+    public static int Rounds;
     public static int Lives;
     public int startLives = 20;
 
 
     private void Start()
     {
+        Rounds = 0;
         money = startMoney;
         Lives = startLives;
 

@@ -40,13 +40,15 @@ public class WaveSpawner : MonoBehaviour
     // Куротина, которая спавнит волны врагов, каждая новая итерация увеличивает кол-во врагов на 1
     IEnumerator SpawnWave() 
     {
+        
+        waveNumver++;
+        PlayerStats.Rounds++;
         for (int i = 0; i < waveNumver; i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);
         }
-
-        waveNumver++;
+        
 
     }
 

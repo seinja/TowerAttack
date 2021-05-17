@@ -155,6 +155,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRate: 1
   range: 15
+  isLaserWeapon: 0
+  lineRenderer: {fileID: 0}
+  impactEffect: {fileID: 0}
+  damageOverTime: 40
+  slowPrc: 0.3
   enemyTag: Enemy
   partToRotate: {fileID: 491608904830029911}
   bulletPrefab: {fileID: 3562132453758247482, guid: 85eb3d57245c3924d8320e0e3df93bde,
@@ -219,7 +224,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: ef88966d15a5a3d4e95586a3d726bc83, type: 2}
   - {fileID: 2100000, guid: ef88966d15a5a3d4e95586a3d726bc83, type: 2}
-  - {fileID: 2100000, guid: ef88966d15a5a3d4e95586a3d726bc83, type: 2}
+  - {fileID: 2100000, guid: bbeadacf0f9c58646ba68c67279be0b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
