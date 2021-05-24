@@ -77,12 +77,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9bbe984894b52d4bbb8980ad4502914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 2
-  range: 15
+  fireRate: 5
+  range: 20
   isLaserWeapon: 0
   lineRenderer: {fileID: 0}
   impactEffect: {fileID: 0}
-  damageOverTime: 0
+  damageOverTime: 15
   slowPrc: 0
   enemyTag: Enemy
   partToRotate: {fileID: 8981723260094273442}

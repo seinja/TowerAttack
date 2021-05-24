@@ -154,11 +154,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1
-  range: 15
+  range: 18
   isLaserWeapon: 0
   lineRenderer: {fileID: 0}
   impactEffect: {fileID: 0}
-  damageOverTime: 40
+  damageOverTime: 5
   slowPrc: 0.3
   enemyTag: Enemy
   partToRotate: {fileID: 491608904830029911}

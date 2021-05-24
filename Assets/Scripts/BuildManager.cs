@@ -3,58 +3,58 @@
 public class BuildManager : MonoBehaviour
 {
 
-    
-    public static BuildManager instance;
-    private TurrentBlueprint turretToBuild;
-    private Node selectedNode;
+	public static BuildManager instance;
 
-    public GameObject standartTurretPrefab;
-    public GameObject laserTurretPrefab;
-    public GameObject misleTurretPrefab;
-    public GameObject buildEffect;
-    public NodeUIScript nodeUI;
+	void Awake()
+	{
+		if (instance != null)
+		{
+			Debug.LogError("More than one BuildManager in scene!");
+			return;
+		}
+		instance = this;
+	}
 
+	public GameObject buildEffect;
+	public GameObject sellEffect;
 
-    // Используем паттерн Синглтон т.к нужен только один BuildManager
-    private void Awake()
-    {
+	private TurrentBlueprint turretToBuild;
+	private Node selectedNode;
 
-        if (instance != null) { Debug.Log("More than one Build Manager"); }
-        instance = this;
+	public NodeUIScript nodeUI;
 
+	public bool CanBuild { get { return turretToBuild != null; } }
+	public bool HasMoney { get { return PlayerStats.money >= turretToBuild.cost; } }
 
-    }
+	public void SelectNode(Node node)
+	{
+		if (selectedNode == node)
+		{
+			DeselectNode();
+			return;
+		}
 
-    public bool CanBuild { get { return turretToBuild != null; } }
-    public bool HasMoney { get { return PlayerStats.money >= turretToBuild.cost; } }
+		selectedNode = node;
+		turretToBuild = null;
 
+		nodeUI.SetTarget(node);
+	}
 
-    public void SelectNode(Node node)
-    { 
+	public void DeselectNode()
+	{
+		selectedNode = null;
+		nodeUI.Hide();
+	}
 
-        if(selectedNode == node) 
-        {
-            DeselectNote();
-            return;
-        }
+	public void SelectTurretToBuild(TurrentBlueprint turret)
+	{
+		turretToBuild = turret;
+		DeselectNode();
+	}
 
-        selectedNode = node;
-        turretToBuild = null;
-
-        nodeUI.SetTarget(node);
-    }
-    public void SelectTurretToBuild(TurrentBlueprint turret) 
-    {
-        turretToBuild = turret;
-        DeselectNote();
-    }
-
-    public TurrentBlueprint GetTurettToBuild() { return turretToBuild; }
-
-    public void DeselectNote() 
-    {
-        selectedNode = null;
-        nodeUI.Hide();
-    }
+	public TurrentBlueprint GetTurretToBuild()
+	{
+		return turretToBuild;
+	}
 
 }

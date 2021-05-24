@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public Transform endPointTransform;
     public GameObject baseExplosionEffect;
     private bool gameEnded = false;
+    public string nextLevel = "Level02";
+    public int levelToUnlock = 2;
 
     public GameObject GameOverUI;
 
@@ -28,5 +31,12 @@ public class GameManager : MonoBehaviour
         gameEnded = true;
         Debug.Log("GameOver");
         
+    }
+
+    public void WinLevel() 
+    {
+        Debug.Log("Win!!");
+        PlayerPrefs.SetInt("levelReached", levelToUnlock);
+        SceneManager.LoadScene(levelToUnlock+1);
     }
 }

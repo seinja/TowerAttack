@@ -90,9 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da90443970a2a642b9c495381c41498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRadius: 10
+  explosionRadius: 5
   impactEffect: {fileID: 2057736841613352909, guid: 1e48423c83b8de547aa82c23b8c02faf,
     type: 3}
   deathEffect: {fileID: 2197048773070572086, guid: 60d41253c883f4c4ca358b0cb7784bc0,
     type: 3}
-  damage: 75
+  damage: 30

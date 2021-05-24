@@ -4860,6 +4860,8 @@ MonoBehaviour:
   isLaserWeapon: 1
   lineRenderer: {fileID: 6789275096714941862}
   impactEffect: {fileID: 3215673609861466506}
+  damageOverTime: 10
+  slowPrc: 0.3
   enemyTag: Enemy
   partToRotate: {fileID: 1910787274403061726}
   bulletPrefab: {fileID: 0}

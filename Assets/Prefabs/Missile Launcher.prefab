@@ -47,7 +47,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1
-  range: 15
+  range: 10
+  isLaserWeapon: 0
+  lineRenderer: {fileID: 0}
+  impactEffect: {fileID: 0}
+  damageOverTime: 40
+  slowPrc: 0.3
   enemyTag: Enemy
   partToRotate: {fileID: 2418687515623564470}
   bulletPrefab: {fileID: 7810584565832568644, guid: 055bbb8d07c0e7c4eaa4cff895b6e687,

@@ -48,7 +48,10 @@ public class Node : MonoBehaviour
     private void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject()) { return; }
-        if (!buildManager.CanBuild) return;
+
+        if (turret != null) {
+            buildManager.SelectNode(this);
+            return; }
 
         if (buildManager.HasMoney)
         {
@@ -59,11 +62,9 @@ public class Node : MonoBehaviour
             rend.material.color = notEnoughtMoney;
         }
 
-        if (turret != null) {
-            buildManager.SelectNode(this);
-            return; }
+        if (!buildManager.CanBuild) { return; }
 
-        BuildTurret(buildManager.GetTurettToBuild());
+        BuildTurret(buildManager.GetTurretToBuild());
 
     }
 

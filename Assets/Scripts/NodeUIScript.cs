@@ -3,31 +3,31 @@ using UnityEngine.UI;
 
 public class NodeUIScript : MonoBehaviour
 {
-    private Node target;
+    private Node currentTurret;
     public GameObject ui;
     public Text updateCost;
     public Text sellCost;
 
-    public void SetTarget(Node _target) 
+    public void SetTarget(Node target) 
     {
-        target = _target;
-        transform.position = target.GetNodePosition();
+        currentTurret = target;
+        transform.position = currentTurret.GetNodePosition();
 
-        if (!target.isUpgraded)
+        if (!currentTurret.isUpgraded)
         {
-            updateCost.text = _target.blueprint.upgradeCost + "$";
+            updateCost.text = target.blueprint.upgradeCost + "$";
         }
         else 
         {
             updateCost.text = "MAX";
         }
-        if (!target.isUpgraded)
+        if (!currentTurret.isUpgraded)
         {
-            sellCost.text = _target.blueprint.sellCost + "$";
+            sellCost.text = target.blueprint.sellCost + "$";
         }
         else 
         {
-            sellCost.text = _target.blueprint.sellCost+50+ "$";
+            sellCost.text = target.blueprint.sellCost+50+ "$";
         }
         
         ui.SetActive(true);
@@ -40,13 +40,13 @@ public class NodeUIScript : MonoBehaviour
 
     public void Upgrade() 
     {
-        target.Upgradeturret();
-        BuildManager.instance.DeselectNote();
+        currentTurret.Upgradeturret();
+        BuildManager.instance.DeselectNode();
     }
 
     public void Sell() 
     {
-        target.RemoveTurret();
-        BuildManager.instance.DeselectNote();
+        currentTurret.RemoveTurret();
+        BuildManager.instance.DeselectNode();
     }
 }

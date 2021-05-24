@@ -3,49 +3,59 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed;
-    public float startSpeed = 10f;
 
-    public float startHealth = 100;
-    public float health;
-    public GameObject deathEffect;
-    public Image healthBar;
+	public float startSpeed = 10f;
 
+	[HideInInspector]
+	public float speed;
 
-    private void Start()
-    {
-        health = startHealth;
-        speed = startSpeed;
-    }
+	public float startHealth = 100;
+	private float health;
 
-    public void TakeDamage(float amount) 
-    {
-        health -= amount;
-        healthBar.fillAmount = health / startHealth;
+	public int worth = 50;
 
-        if (health < 0) 
-        {
-            Die();
-        }
-    }
+	public GameObject deathEffect;
 
-    public void BaseDamage() 
-    {
-        PlayerStats.Lives--;
-    }
+	[Header("Unity Stuff")]
+	public Image healthBar;
 
-    void Die() 
-    {
-        GameObject deadEffect = (GameObject) Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(deadEffect, 5f);
-        Destroy(this.gameObject);
-        PlayerStats.money += 100;
-    }
+	private bool isDead = false;
 
-    public void Slow(float slowPrc) 
-    {
-        speed = startSpeed * (1 * slowPrc);
-    }
+	void Start()
+	{
+		speed = startSpeed;
+		health = startHealth;
+	}
 
+	public void TakeDamage(float amount)
+	{
+		health -= amount;
+
+		healthBar.fillAmount = health / startHealth;
+
+		if (health <= 0 && !isDead)
+		{
+			Die();
+		}
+	}
+
+	public void Slow(float pct)
+	{
+		speed = startSpeed * (1f - pct);
+	}
+
+	void Die()
+	{
+		isDead = true;
+
+		PlayerStats.money += worth;
+
+		GameObject effect = (GameObject)Instantiate(deathEffect, transform.position, Quaternion.identity);
+		Destroy(effect, 5f);
+
+		WaveSpawner.EnemiesAlive--;
+
+		Destroy(gameObject);
+	}
 
 }
